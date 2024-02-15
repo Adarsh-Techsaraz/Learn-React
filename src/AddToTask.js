@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 const AddToTask = ({updateModel,todosData,isUpdate,filterData,updateData}) => {
   const [title, setTitle] = useState(isUpdate ? filterData.title : '');
-  const [status, setStatus] = useState(isUpdate ? filterData.status : 'Incomplete');
+  const [status, setStatus] = useState(isUpdate ? filterData.status : 'Incompleted');
 
   const handleUpdate = (e) => {
     if (title === "" || status === ""){
@@ -9,6 +9,7 @@ const AddToTask = ({updateModel,todosData,isUpdate,filterData,updateData}) => {
     }else{
           updateData({id:filterData.id, title, status})
     }
+    updateModel(false)
   }
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +17,7 @@ const AddToTask = ({updateModel,todosData,isUpdate,filterData,updateData}) => {
     if (title === '' || status === '') {
       alert('All fields are required !!!');
     } else {
-todosData({
+      todosData({
         title,status
       })
       updateModel(false);
@@ -24,8 +25,8 @@ todosData({
   }
   useEffect(() => {
 //console.log(status,title)
-console.log(filterData)
-console.log({isUpdate})
+//console.log(filterData)
+//console.log({isUpdate})
   },[])
     return (
         <>
@@ -38,17 +39,19 @@ console.log({isUpdate})
       </svg>
     </div>
       <h1 class="modal_formTitle__dyssK">Add TODO</h1>
-      <label for="title">Title <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <label for="title">Title
+        <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)}/>
       </label>
-              <label for="type">Status <select id="type" value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option value="incomplete">Incomplete</option>
-          <option value="complete">Completed</option>
+      <label for="type">Status
+        <select id="type" value={status} onChange={(e) => setStatus(e.target.value)}>
+          <option value="Incompleted">Incompleted</option>
+          <option value="Completed">Completed</option>
         </select>
       </label>
       <div class="modal_buttonContainer__r9NWb">
         {!isUpdate && <button type="button" class="button_button__zbfSX button_button--primary__09xDJ" onClick={(e) => handleFormSubmit(e)}>Add Task</button>}
         {isUpdate && <button type="button" class="button_button__zbfSX button_button--primary__09xDJ" onClick={(e) => handleUpdate(e)}>Update Task</button>}
-                <button type="button" class="button_button__zbfSX button_button--secondary__mWkmM" onClick={() => updateModel(false)}>Cancel</button>
+        <button type="button" class="button_button__zbfSX button_button--secondary__mWkmM" onClick={() => updateModel(false)}>Cancel</button>
       </div>
   </div>
 </div>
