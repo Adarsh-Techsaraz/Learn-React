@@ -1,7 +1,158 @@
 .App {
   text-align: center;
+  width: 750px;
+  margin: 50px auto;
 }
-
+.heading{
+  color: #646681;
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 2rem auto 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%
+}
+.button-div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+.add-task-btn{
+  background-color: #646ff0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  display: inline-block;
+  height: auto;
+  padding: 10px 15px;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.category{
+  background-color: #cccdde;
+  border: none;
+  padding: 10px 15px;;
+  width: 150px;
+  border-radius: 6px;
+  display: inline-block;
+  height: auto;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: capitalize
+}
+.content-div{
+  background-color: #ecedf6;
+  border-radius: 12px;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.content{
+  align-items: center;
+  background-color: white;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+.icon-div{
+  width: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.delete-div, .edit-div{
+  background-color: #eee;
+  border-radius: 4px;
+  padding: 5px;
+}
+.modal_container{
+  background-color: #ecedf6;
+  border-radius: 8px;
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 2rem;
+  position: relative;
+  width: 100%;
+}
+.modal_closeButton-div{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.modal_closeButton{
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.5rem;
+}
+.modal_Title{
+  color: var(--black-1);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-transform: capitalize;
+  text-align: center;
+}
+.modal-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+.lables{
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 4px;
+  padding: 1rem;
+  width: auto;
+  font-size: 1rem;
+}
+.modal_buttonContainer{
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+.button_add{
+  background-color: #646ff0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  display: inline-block;
+  height: auto;
+  padding: 10px 15px;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.button_cancle{
+  background-color: #cccdde;
+  border: none;
+  border-radius: 6px;
+  display: inline-block;
+  height: auto;
+  padding: 10px 15px;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 1rem;
+  font-weight: 500;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -36,3 +187,4 @@
     transform: rotate(360deg);
   }
 }
+

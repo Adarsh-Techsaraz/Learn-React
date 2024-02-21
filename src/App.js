@@ -1,13 +1,16 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import AddToTask from './AddToTask';
+import deleteLogo from './image/delete-icon-png.png';
+import editLogo from './image/edit-icon-png.png';
 
 function App() {
-  const localData = JSON.parse(localStorage.getItem("data"))
-  const [openModel, setOpenModel] = useState(false);
-  const [toDoData, setTodoData] = useState(localData);
-  const [isUpdate, setUpdate] = useState(false);
-  const [dataToSet, setdataToSet] = useState({});
+   const localData = JSON.parse(localStorage.getItem("data"))
+   const [openModel, setOpenModel] = useState(false);
+   const [toDoData, setTodoData] = useState(localData);
+   const [isUpdate, setUpdate] = useState(false);
+   const [dataToSet, setdataToSet] = useState({});
+   const [filterData, setFilterData] = useState(localData)
   const handelDelete = (i) => {
     setTodoData(toDoData.filter((v,index) => i!== index))
   }
@@ -35,35 +38,40 @@ function App() {
     setTodoData(filterData)
   }
   const dataToDisplay = (e)=> {
-    const filterData = toDoData.filter((value,index) => value === e)
-    setTodoData(filterData)
+    const filterData = e==="All" ? toDoData : toDoData.filter((value,index) => value.status === e)
+    setFilterData(filterData)
   }
   useEffect(()=> {
     localStorage.setItem('data', JSON.stringify(toDoData))
   },[toDoData])
+  //console.log(toDoData)
   
   return (
     <>
       {/* Conditional Rendering */}
       {openModel && <AddToTask updateModel={(flag) => setOpenModel(flag)} todosData={(data) => storeData(data)} isUpdate={isUpdate} filterData={dataToSet} updateData={(data)=>handleUpdateData(data)}/>}
       <div className="App">
-      <h1>TODO LIST</h1>
-      <div style={{display:'flex',justifyContent:'space-between',margin:'4rem'}}>
-        <button onClick={() => firstClick()}>Add to Task</button>
-        <select>
-          <option value="All" onChange={(e) => dataToDisplay(e.target.value)}>All  Task</option>
-          <option value="Completed" onChange={(e) => dataToDisplay(e.target.value)}>Completed</option>
-          <option value="Incompleted" onChange={(e) => dataToDisplay(e.target.value)}>Incompleted</option>
+      <h1 class="heading">TODO LIST</h1>
+      <div class="button-div" style={{display:'flex'}}>
+        <button class="add-task-btn" onClick={() => firstClick()}>Add Task</button>
+        <select class="category" onChange={(e) => dataToDisplay(e.target.value)}>
+          <option value="All">All</option>
+          <option value="Completed">Completed</option>
+          <option value="Incompleted">Incompleted</option>
         </select>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', margin: '4rem' }}>
-          {toDoData.map((value, i) => (
-            <>
+        <div class="content-div" style={{display: 'flex'}}>
+          {filterData.map((value, i) => (
+            <div class="content">
               <span>{value.title}</span>
               <span>{value.status}</span>
-              <button onClick={()=> handelEdit(i)}>Edit</button>
-              <button onClick={() => handelDelete(i)}>Delete</button>
-            </>
+              <div class='icon-div'>
+                <div class='delete-div'><img src={deleteLogo} alt='image' width='20px' height='20px' onClick={() => handelDelete(i)}/></div>
+                <div class='edit-div'><img src={editLogo} alt='image' width='20px' height='20px' onClick={()=> handelEdit(i)}/></div>
+              </div>
+              {/* <button onClick={()=> handelEdit(i)}>Edit</button>
+              <button onClick={() => handelDelete(i)}>Delete</button> */}
+            </div>
           ))}
         </div>
     </div>
